@@ -13,7 +13,7 @@ Source:
     if val == secret_value_for_password:
         print(flag)
 ```
-Ta có thể dễ dang thấy input bị hạn chế không quá 10 kí tự khác nhau, và sẽ được xử lí qua hàm eval(). Nên input sẽ là 1 đoạn code nhỏ tận dụng hàm eval() để in ra flag.
+Ta có thể dễ dàng thấy input bị hạn chế không quá 10 kí tự khác nhau, và sẽ được xử lí qua hàm eval(). Nên input sẽ là 1 đoạn code nhỏ tận dụng hàm eval() để in ra flag.
 ```python
 Input value: help(flag)
 No Python documentation found for 'PCTF{hmm_so_you_were_Able_2_g0lf_it_down?_Here_have_a_flag}'.
@@ -39,7 +39,7 @@ if ( i > 19 ){
       exit(0);
 }
 ```
-Ta sẽ thấy thêm từng kí tự trong flag_buf sẽ bị mã hoá và cuối cũng check giá trị với check_buf.
+Ta sẽ thấy thêm từng kí tự trong flag_buf sẽ bị mã hoá và cuối cùng check giá trị với check_buf.
 ```c
 if ( *((_BYTE *)check_buf + i) != (BYTE1(flag_buf_encoded) ^ (unsigned __int8)flag_buf_encoded) )
       break;
@@ -138,7 +138,7 @@ $ file pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89
 pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89: gzip compressed data, last modified: Sat Apr 13 21:56:25 2019, from Unix, original size 119234560
 ```
 Ở đây ta thấy đây file `tar.gz`, khi extract ta sẽ thấy thư mục và file với tên đã là mã sha256, file `manifest.json` và `repositories`. Tìm hiểu thêm vào các file thì mình biết đây là 1 docker imagine nhưng khi thử chạy trên docker thì không được.
-Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta `flag.sh`
+Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta thấy file `flag.sh`
 ```sh
 #!/bin/bash
 
