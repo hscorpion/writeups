@@ -116,7 +116,7 @@ Chỉ cần ta gặp được 2 vị khách đến trễ này là có được f
       abort();
   }
 ```
-Để ý chúng ta sẽ thấy 2 vòng for này khiến chương trình của chúng ta bị cancel. Vậy đơn giản chỉ cần bypass qua đoạn code này là ta đã có được flag...Wait...what???...500pts?????
+Để ý chúng ta sẽ thấy 2 vòng for này khiến chương trình của chúng ta bị cancel. Vậy đơn giản chỉ cần bypass qua đoạn code này là ta đã có được flag...
 ```
 Alphabetical it is, I guess.
 Simulating the dinner...
@@ -177,11 +177,11 @@ a17 = ['q', 'm', 'i']
 a18 = ['6', '7', 'n']
 a19 = ['_', 't', 'n', '8', '3']
 a20 = ['e', '_', 'r']
-a21 = ['_', 't', '_']
+a21 = ['_', 't']
 a22 = ['u']
 a23 = ['i', 't', 'r']
 a24 = ['2', 'e', '_']
-a25 = ['l', '_', 'l']
+a25 = ['l', '_']
 a26 = ['4', '7', '_']
 a27 = ['u']
 a28 = ['_', 'b', 'g']
