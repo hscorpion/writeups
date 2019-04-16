@@ -47,7 +47,7 @@ if ( *((_BYTE *)check_buf + i) != (BYTE1(flag_buf_encoded) ^ (unsigned __int8)fl
 Giá trị của check_buf
 ```assembly
 .text:56601F64                 mov     edx, (check_buf - 56604000h)[esi]
-.text:56601F6A                 mov     eax, [ebp+var_1C]
+.text:56601F6A                 mov     eax, [ebp+i]
 .text:56601F6D                 add     eax, edx
 .text:56601F6F                 movzx   edx, byte ptr [eax]
 ```
