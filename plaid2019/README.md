@@ -14,7 +14,7 @@ Source:
         print(flag)
 ```
 Ta có thể dễ dang thấy input bị hạn chế không quá 10 kí tự khác nhau, và sẽ được xử lí qua hàm eval(). Nên input sẽ là 1 đoạn code nhỏ tận dụng hàm eval() để in ra flag.
-```
+```python
 Input value: help(flag)
 No Python documentation found for 'PCTF{hmm_so_you_were_Able_2_g0lf_it_down?_Here_have_a_flag}'.
 Use help() to get the interactive help utility.
@@ -24,7 +24,7 @@ Nope. Better luck next time.
 ```
 
 Còn đây là 1 input khác do teamate nghĩ ra:
-```
+```python
 Input value: print(vars())
 {'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7fed04e799e8>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': '/home/guessme/can-you-guess-me.py', '__cached__': None, 'exit': <built-in function exit>, 'secret_value_for_password': 'not even a number; this is a damn string; and it has all 26 characters of the alphabet; abcdefghijklmnopqrstuvwxyz; lol', 'flag': 'PCTF{hmm_so_you_were_Able_2_g0lf_it_down?_Here_have_a_flag}', 'exec': <function exec at 0x7fed04dc2158>, 'val': 0, 'inp': 'print(vars())', 'count_digits': 10}
 Nope. Better luck next time.
@@ -106,7 +106,7 @@ sprintt(
     v24);
 ```
 Chỉ cần ta gặp được 2 vị khách đến trễ này là có được flag.
-```
+```c
   for ( i = 0; i <= 14; ++i ){
     if ( pthread_create((pthread_t *)&th[i], 0LL, start_routine, (void *)(a1 + 32LL * i)) )
       abort();
@@ -133,13 +133,13 @@ strikeskids: Hopefully that's useful to someone.
 ```
 
 ## A Whaley Good Joke (Misc 150 pts)
-```
-file pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89 
+```sh
+$ file pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89 
 pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89: gzip compressed data, last modified: Sat Apr 13 21:56:25 2019, from Unix, original size 119234560
 ```
 Ở đây ta thấy đây file `tar.gz`, khi extract ta sẽ thấy thư mục và file với tên đã là mã sha256, file `manifest.json` và `repositories`. Tìm hiểu thêm vào các file thì mình biết đây là 1 docker imagine nhưng khi thử chạy trên docker thì không được.
 Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta `flag.sh`
-```console
+```sh
 #!/bin/bash
 
 for i in {1..32}
