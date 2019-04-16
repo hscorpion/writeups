@@ -97,7 +97,7 @@ sleep((__int64)&v36, 1uLL);
 printt(&v32, (__int64)"It's a flag!", v18, v19, v20, v21);
 sleep((__int64)&v32, 5uLL);
 ptr = sub_558797A30524(a1);
-printt(
+sprintt(
     (_QWORD *)(a1 + 256),
     (__int64)"Let me take a look. It seems to say\n\tPCTF{%s}.",
     (__int64)ptr,
@@ -131,3 +131,65 @@ strikeskids: Let me take a look. It seems to say
         PCTF{1 l1v3 1n th3 1nt3rs3ct1on of CSP and s3cur1ty and parti3s!}.
 strikeskids: Hopefully that's useful to someone.
 ```
+
+## A Whaley Good Joke (Misc 150 pts)
+```
+file pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89 
+pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89: gzip compressed data, last modified: Sat Apr 13 21:56:25 2019, from Unix, original size 119234560
+```
+Ở đây ta thấy đây file `tar.gz`, khi extract ta sẽ thấy thư mục và file với tên đã là mã sha256, file `manifest.json` và `repositories`. Tìm hiểu thêm vào các file thì mình biết đây là 1 docker imagine nhưng khi thử chạy trên docker thì không được.
+Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta `flag.sh`
+```console
+#!/bin/bash
+
+for i in {1..32}
+do
+    test -f $i
+    if [[ $? -ne 0 ]]
+    then
+        echo "Missing file $i - no flag for you!"
+        exit
+    fi
+done
+
+echo pctf{1_b3t$(cat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32)}
+```
+
+Vậy ta chỉ cần tìm thêm các file `1` `2`... nữa nhưng vì ở có quá nhiều file trùng nhau, và cũng không thể biết được thứ tự thực hiện nên mình quyết định brute force.
+```python
+a1 = ['t', 'k', '_']
+a2 = ['t', '4', 'u']
+a3 = ['z', '_']
+a4 = ['a', 'c', 's', '_']
+a5 = ['l', 'o', 'u']
+a6 = ['u', 'k']
+a7 = ['l', 'z']
+a8 = ['t', 'g', 'd']
+a9 = ['n']
+a10 = ['_', '7', 'n']
+a11 = ['0', 't', '7', '_', 'v']
+a12 = ['s', 'c']
+a13 = ['0']
+a14 = ['l', 'n']
+a15 = ['t', 'k']
+a16 = ['4', 'n', '3']
+a17 = ['q', 'm', 'i']
+a18 = ['6', '7', 'n']
+a19 = ['_', 't', 'n', '8', '3']
+a20 = ['e', '_', 'r']
+a21 = ['_', 't', '_']
+a22 = ['u']
+a23 = ['i', 't', 'r']
+a24 = ['2', 'e', '_']
+a25 = ['l', '_', 'l']
+a26 = ['4', '7', '_']
+a27 = ['u']
+a28 = ['_', 'b', 'g']
+a29 = ['h']
+a30 = ['t', '_']
+a31 = ['e', '3']
+a32 = ['r']
+
+flag = 'pctf{1_b3t'
+```
+Từ đây dữ kiện trên thực hiện bf và sẽ đoán được flag là `pctf{1_b3t_u_couldnt_c0nt4in3r_ur_l4ught3r}`
