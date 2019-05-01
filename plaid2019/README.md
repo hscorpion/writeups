@@ -13,7 +13,9 @@ Source:
     if val == secret_value_for_password:
         print(flag)
 ```
-Ta có thể dễ dàng thấy input bị hạn chế không quá 10 kí tự khác nhau, và sẽ được xử lí qua hàm eval(). Nên input sẽ là 1 đoạn code nhỏ tận dụng hàm eval() để in ra flag.
+Ta có thể dễ dàng thấy input bị hạn chế không quá 10 kí tự khác nhau, và sẽ được xử lí qua hàm `eval()`. Nên input sẽ là 1 đoạn code nhỏ tận dụng hàm `eval()` để in ra flag.
+
+As you can see, input is limited to no more than 10 unique characters, and it will be processed through the `eval()` function. So input will be a piece of code that uses `eval()` to print the flag.
 ```python
 Input value: help(flag)
 No Python documentation found for 'PCTF{hmm_so_you_were_Able_2_g0lf_it_down?_Here_have_a_flag}'.
@@ -23,7 +25,9 @@ Use help(str) for help on the str class.
 Nope. Better luck next time.
 ```
 
-Còn đây là 1 input khác do teamate nghĩ ra:
+Còn đây là 1 input khác do teammate nghĩ ra.
+
+And here's another input which is made by my teammate.
 ```python
 Input value: print(vars())
 {'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7fed04e799e8>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>, '__file__': '/home/guessme/can-you-guess-me.py', '__cached__': None, 'exit': <built-in function exit>, 'secret_value_for_password': 'not even a number; this is a damn string; and it has all 26 characters of the alphabet; abcdefghijklmnopqrstuvwxyz; lol', 'flag': 'PCTF{hmm_so_you_were_Able_2_g0lf_it_down?_Here_have_a_flag}', 'exec': <function exec at 0x7fed04dc2158>, 'val': 0, 'inp': 'print(vars())', 'count_digits': 10}
@@ -31,8 +35,9 @@ Nope. Better luck next time.
 ```
 
 ## i can count (Reversing 50 pts)
-Tại main ta có thể thấy sau flag_buf sẽ được tăng lên 1 sau đó qua hàm check_flag, và cứ thế lặp lại. Nên hàm trọng tâm sẽ là check_flag.
-Tại hàm check_flag có được định dạng của flag, đơn giản bây giờ chỉ cần biết giá trị của flag_buf:
+Tại `main`, ta có thể thấy flag_buf sẽ được tăng lên 1 sau đó qua hàm check_flag, và cứ thế lặp lại. Nên hàm trọng tâm sẽ là check_flag. Tại hàm check_flag có được định dạng của flag, đơn giản bây giờ chỉ cần biết giá trị của flag_buf.
+
+At `main`, flag_buf will be increased by 1 then proceed to check_flag function, and so on. Beacause of that, the focal code will be check_flag. At check_flag, we will have the format of flag, simply now we just need to know the value of flag_buf.
 ```c
 if ( i > 19 ){
       printf("PCTF{%s}\n", flag_buf);
@@ -40,11 +45,15 @@ if ( i > 19 ){
 }
 ```
 Ta sẽ thấy thêm từng kí tự trong flag_buf sẽ bị mã hoá và cuối cùng check giá trị với check_buf.
+
+We can also see that each flag_buf character will be encoded and finally has its value checked with check_buf.
 ```c
 if ( *((_BYTE *)check_buf + i) != (BYTE1(flag_buf_encoded) ^ (unsigned __int8)flag_buf_encoded) )
       break;
 ```
-Giá trị của check_buf
+Giá trị của check_buf.
+
+Value of check_buf.
 ```assembly
 .text:56601F64                 mov     edx, (check_buf - 56604000h)[esi]
 .text:56601F6A                 mov     eax, [ebp+i]
@@ -58,7 +67,9 @@ gdb-peda$ x/20b $eax
 0x5655638d:     0xcd    0xb5    0xb5    0x89
 ```
 
-Vậy giờ ta chỉ cần debug biết từng giá trị của flag_buf sau khi đã mã hoá:
+Vậy giờ ta chỉ cần debug biết từng giá trị của flag_buf sau khi đã mã hoá.
+
+Now we just need to debug, knowing every values of flag_buf after encryption.
 ```assembly
 0 -> 0x42
 1 -> 0xCD
@@ -78,8 +89,9 @@ PCTF{2052419606511006177}
 ```
 
 ## Plaid Party Planning III (Reversing 500 pts)
-Nói thật thì bài này 500pts nhưng thật sự rất dễ không biết tác giả của ý đồ gì khác hay không.
+Nói thật thì bài này 500pts nhưng thật sự rất dễ không biết tác giả có ý đồ gì khác hay không.
 
+To be honest, this exercise is quite easy but it gives you 500 pts. I don't know if the author has any other hidden ideas.
 ```c
 v32 = "bluepichu";
 v36 = "mserrano";
@@ -106,6 +118,8 @@ sprintt(
     v24);
 ```
 Chỉ cần ta gặp được 2 vị khách đến trễ này là có được flag.
+
+We just need to meet these two late-coming guests to have the flag.
 ```c
   for ( i = 0; i <= 14; ++i ){
     if ( pthread_create((pthread_t *)&th[i], 0LL, start_routine, (void *)(a1 + 32LL * i)) )
@@ -116,7 +130,9 @@ Chỉ cần ta gặp được 2 vị khách đến trễ này là có được f
       abort();
   }
 ```
-Để ý chúng ta sẽ thấy 2 vòng for này khiến chương trình của chúng ta bị cancel. Vậy đơn giản chỉ cần bypass qua đoạn code này là ta đã có được flag...
+Để ý chúng ta sẽ thấy 2 vòng for này khiến chương trình của chúng ta bị abort. Vậy đơn giản chỉ cần bypass qua đoạn code này là ta đã có được flag...
+
+Notice that these two for loops will make our program aborted, so we just simply bypass this code to have the flag...
 ```
 Alphabetical it is, I guess.
 Simulating the dinner...
@@ -137,8 +153,9 @@ strikeskids: Hopefully that's useful to someone.
 $ file pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89 
 pctf-whales_169aeb74f82dcdceb76e36a6c4c22a89: gzip compressed data, last modified: Sat Apr 13 21:56:25 2019, from Unix, original size 119234560
 ```
-Ở đây ta thấy đây file `tar.gz`, khi extract ta sẽ thấy thư mục và file với tên đã là mã sha256, file `manifest.json` và `repositories`. Tìm hiểu thêm vào các file thì mình biết đây là 1 docker imagine nhưng khi thử chạy trên docker thì không được.
-Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta thấy file `flag.sh`
+Ở đây ta thấy đây file `tar.gz`, khi extract ta sẽ thấy thư mục và file với tên đã là mã sha256, file `manifest.json` và `repositories`. Tìm hiểu thêm vào các file thì mình biết đây là 1 docker imagine nhưng khi thử chạy trên docker thì không được. Sau đó đọc trong file `manifest.json` ta thấy 2 layer cuối cùng là `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` và `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Vì lúc extract mình đã bị lỗi không thể ra được file `layer.tar` trong `24d12bb...` nên xem trong `b94e...` thì ta thấy file `flag.sh`.
+
+Here, we can see `tar.gz`, extract and we will have folders and files that have their name sha256 encoded, file `manifest.json` and `repositories`. By learning more about these files, I discovered that this is a doker imagine but couldn't be tested on dorker. After reading `manifest.json`, we can see the last two layers are `24d12bbeb0a9fd321a8decc0c544f84bf1f6fc2fd69fa043602e012e3ee6558b` and `b94e5d83dbbff95e883f0f53bcf47c017471b13d81325697be6e22cdc8c369aa`. Because when extracting, I failed to extract `layer.taz` from `24d12bb...`, so I tried using `b94e5d8...` and got `flag.sh`.
 ```sh
 #!/bin/bash
 
@@ -155,7 +172,9 @@ done
 echo pctf{1_b3t$(cat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32)}
 ```
 
-Vậy ta chỉ cần tìm thêm các file `1` `2`... nữa nhưng vì ở có quá nhiều file trùng nhau, và cũng không thể biết được thứ tự thực hiện nên mình quyết định brute force.
+Vậy ta chỉ cần tìm thêm các file `1` `2`... nữa nhưng vì ở có quá nhiều file trùng nhau, và cũng không thể biết được thứ tự thực hiện nên mình quyết định brute-force.
+
+So we just need to look for the `1`, `2`,... files, but because there are too many files overlap, and we can't know the order of execution, so I decided to brute-force.
 ```python
 a1 = ['t', 'k', '_']
 a2 = ['t', '4', 'u']
@@ -192,4 +211,6 @@ a32 = ['r']
 
 flag = 'pctf{1_b3t'
 ```
-Từ đây dữ kiện trên thực hiện bf và sẽ đoán được flag là `pctf{1_b3t_u_couldnt_c0nt4in3r_ur_l4ught3r}`
+Khá khó với 32 kí tự nhưng sẽ đoán được flag là `pctf{1_b3t_u_couldnt_c0nt4in3r_ur_l4ught3r}`.
+
+Pretty hard with 32 characters but i guessed flag.
