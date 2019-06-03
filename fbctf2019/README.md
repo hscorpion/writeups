@@ -4,22 +4,23 @@
 
 Bài này mình quyết định debug để hiểu rõ flow của chương trình nên làm khá tốn thời gian.
 
-Đầu tiền main gọi qua std::rt::lang_start_internal::h578aadb15b8a79f8 - hàm này đơn giản chỉ là obfuscate để dấu việc trực tiếp gọi hàm imageprot::main::h60a99eb3d3587835 (hàm main thật sự)
+Đầu tiền main gọi qua `std::rt::lang_start_internal::h578aadb15b8a79f8` - hàm này đơn giản chỉ là obfuscate để dấu việc trực tiếp gọi hàm `imageprot::main::h60a99eb3d3587835` (hàm main thật sự)
 
-Trong hàm main chính này, sử dụng hàm imageprot::decrypt::h56022ac7eed95389 làm phương thức obfuscate chính.
+Trong hàm main chính này, sử dụng hàm `imageprot::decrypt::h56022ac7eed95389` làm phương thức obfuscate chính.
 
-Hàm imageprot::decrypt::h56022ac7eed95389() này nhận 3 argument và tiến hành decrypt. Thuật toán khá đơn giản là decode_base64(arg3) XOR với arg2
+Hàm `imageprot::decrypt::h56022ac7eed95389()` này nhận 3 argument và tiến hành decrypt. Thuật toán khá đơn giản là decode_base64(arg3) XOR với arg2
 
 ```c
 base64::decode::decode::h5b239420e35447bb(&a3_base64, arg3);
 ```
+
 ```c
 decode_i = *(_BYTE *)(arg3_base64_ + i) ^ *(_BYTE *)(arg2_ + i % len_arg2);
 ```
 
-Ở vòng lặp đầu tiên, chương trình decode ra 4 string là `gdb`, `vmtoolsd`, `vagrant` và `VBoxClient` (Cái này mình không chắc nhưng lúc debug tiếp thì có 1 đoạn check 4 string này, có vẻ là require để chạy chương trình)
+Ở vòng lặp đầu tiên, chương trình sử dụng hàm `imageprot::decrypt::h56022ac7eed95389` decrypt ra 4 string là `gdb`, `vmtoolsd`, `vagrant` và `VBoxClient` (Cái này mình không chắc nhưng lúc debug tiếp thì có 1 đoạn check 4 string này, có vẻ là require để chạy chương trình)
 
-Ngay sau đó, chương trình decrypt ra 1 url là `http://challenges.fbctf.com/vault_is_intern` sau đó gọi hàm imageprot::get_uri::h3e649992b59ca680 để get url này. Vì trang này đã down nên chương trình sẽ ngắt tại đây (lí do chương trình không thể chạy)
+Ngay sau đó, chương trình decrypt ra 1 url là `http://challenges.fbctf.com/vault_is_intern` sau đó gọi hàm `imageprot::get_uri::h3e649992b59ca680` để get url này. Vì trang này đã down nên chương trình sẽ ngắt tại đây (lí do chương trình không thể chạy)
 
 ![vault_is_intern](https://i.imgur.com/IKbS0Uv.png)
 
@@ -27,7 +28,7 @@ Tiếp theo hoàn toàn tương tự với 1 url khác `http://httpbin.org/statu
 
 ![httpbin](https://i.imgur.com/tzLkhVo.png)
 
-Cuối cùng, hàm imageprot::decrypt::h56022ac7eed95389() xử lí 1 mã base64 khá lớn với dữ liệu được get từ `http://httpbin.org/status/418` (mình thấy sau sau đó có gọi một số hàm md5 tưởng vẫn chưa hết nên lan man đoạn cuối này khá lâu)
+Cuối cùng, hàm `imageprot::decrypt::h56022ac7eed95389()` xử lí 1 mã base64 khá lớn với dữ liệu được get từ `http://httpbin.org/status/418` (mình thấy sau sau đó có gọi một số hàm md5 tưởng vẫn chưa hết nên lan man đoạn cuối này khá lâu)
 
 ![end](https://i.imgur.com/tGpzYP5.png)
 
