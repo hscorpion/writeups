@@ -32,11 +32,15 @@ else {
   printt(&v8, argv);                          // print ':)'
 }
 ```
-Hàm main này đơn giản chỉ là check argument với `my_sUp3r_s3cret_p@$$w0rd1` và in ra 1 flag giả là `Nope{Lolz_this_isnt_the_flag...Try again...}`
+Hàm main này đơn giản chỉ là check argument với `my_sUp3r_s3cret_p@$$w0rd1` và in ra 1 flag giả là `Nope{Lolz_this_isnt_the_flag...Try again...}
+`
 Stuck đoạn này khá lâu thì có 1 hint của anh m3kk_kn1ght: `m3kk_kn1ght: Binary check debugger by using ptrace. Ptrace call in sub_4005A0(a function in init_array of elf)`
-Sau đó mình tìm các hàm tiền khởi tạo ở .init_array thấy hàm sub_4005A0 có sử dụng hàm ptrace (sub__44EC50) để antidebug nên tiến hành debug hàm này để bypass qua ptrace có rất nhiều cách, ở đây mình đơn giản là set cờ ZF = 0
-Sau khi bypass qua ta sẽ thấy binary đọc file /tmp/key.bin và check trước khi in flag vì mình muốn lấy flag nên bypass qua thay vì decrypt để biết require của key.bin
+
+Sau đó mình tìm các initialization functions trong .init_array, thấy hàm sub_4005A0 có sử dụng hàm ptrace (sub__44EC50) để anti-debug nên tiến hành debug hàm này. (Để bypass qua ptrace có rất nhiều cách, ở đây mình đơn giản là set cờ ZF = 0)
+
+Sau khi bypass qua ta sẽ thấy binary đọc file /tmp/key.bin và check dữ liệu từ key.bin trước khi in flag. Vì mình muốn lấy flag nên bypass qua thay vì decrypt để biết require của key.bin
 ![/tmp/key.bin](https://i.imgur.com/WNjPu38.png)
+![check-key.bin-data](https://i.imgur.com/V5Sl4qV.png)
 ```
 =========================================================
 [11] Accepting connection from 192.168.85.1...
