@@ -1,5 +1,41 @@
 # Facebook CTF 2019
 
+## imageprot
+
+Bài này mình quyết định debug để hiểu rõ flow của chương trình nên làm khá tốn thời gian.
+
+Đầu tiền main gọi qua std::rt::lang_start_internal::h578aadb15b8a79f8 - hàm này đơn giản chỉ là obfuscate để dấu việc trực tiếp gọi hàm imageprot::main::h60a99eb3d3587835 (hàm main thật sự)
+
+Trong hàm main chính này, sử dụng hàm imageprot::decrypt::h56022ac7eed95389 làm phương thức obfuscate chính.
+
+Hàm imageprot::decrypt::h56022ac7eed95389() này nhận 3 argument và tiến hành decrypt. Thuật toán khá đơn giản là decode_base64(arg3) XOR với arg2
+
+```c
+base64::decode::decode::h5b239420e35447bb(&a3_base64, arg3);
+```
+```c
+decode_i = *(_BYTE *)(arg3_base64_ + i) ^ *(_BYTE *)(arg2_ + i % len_arg2);
+```
+
+Ở vòng lặp đầu tiên, chương trình decode ra 4 string là `gdb`, `vmtoolsd`, `vagrant` và `VBoxClient` (Cái này mình không chắc nhưng lúc debug tiếp thì có 1 đoạn check 4 string này, có vẻ là require để chạy chương trình)
+
+Ngay sau đó, chương trình decrypt ra 1 url là `http://challenges.fbctf.com/vault_is_intern` sau đó gọi hàm imageprot::get_uri::h3e649992b59ca680 để get url này. Vì trang này đã down nên chương trình sẽ ngắt tại đây (lí do chương trình không thể chạy)
+
+![vault_is_intern](https://i.imgur.com/IKbS0Uv.png)
+
+Tiếp theo hoàn toàn tương tự với 1 url khác `http://httpbin.org/status/418` nhưng trang hoàn toàn bình thường nên sẽ lấy dữ liệu từ trang này.
+
+![httpbin](https://i.imgur.com/tzLkhVo.png)
+
+Cuối cùng, hàm imageprot::decrypt::h56022ac7eed95389() xử lí 1 mã base64 khá lớn với dữ liệu được get từ `http://httpbin.org/status/418` (mình thấy sau sau đó có gọi một số hàm md5 tưởng vẫn chưa hết nên lan man đoạn cuối này khá lâu)
+
+![end](https://i.imgur.com/tGpzYP5.png)
+
+Vì đoạn mã base64 khá lớn và đề cũng yêu cầu `get the photo back out` nên mình đoán đây là 1 file. Nên tiến hành export nó ra và giãi mã nó.
+Đây là đoạn script giải mã: [restore-image.py](/fbctf2019/imageprot/restore-image.py)
+
+![image-back](https://raw.githubusercontent.com/hscorpion/writeups/master/fbctf2019/imageprot/image-back.png)
+
 ## SOMBRERO ROJO (part 1)
 main:
 ```c
