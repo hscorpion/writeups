@@ -40,9 +40,9 @@ Sau đó mình tìm các initialization functions trong .init_array, thấy hàm
 
 Sau khi bypass qua ta sẽ thấy binary đọc file /tmp/key.bin và check dữ liệu từ key.bin trước khi in flag. Vì mình muốn lấy flag nên bypass qua thay vì decrypt để biết require của key.bin
 ![/tmp/key.bin](https://i.imgur.com/WNjPu38.png)
-<div style="text-align:center">access file /tmp/key.bin</div>
+<center>access file /tmp/key.bin</center>
 ![check-key.bin-data](https://i.imgur.com/V5Sl4qV.png)
-<div style="text-align:center">check /tmp/key.bin data</div>
+<center>check /tmp/key.bin data</center>
 ```
 =========================================================
 [11] Accepting connection from 192.168.85.1...
