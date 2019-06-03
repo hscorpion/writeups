@@ -36,7 +36,7 @@ Hàm main này đơn giản chỉ là check argument với `my_sUp3r_s3cret_p@$$
 Stuck đoạn này khá lâu thì có 1 hint của anh m3kk_kn1ght: `m3kk_kn1ght: Binary check debugger by using ptrace. Ptrace call in sub_4005A0(a function in init_array of elf)`
 Sau đó mình tìm các hàm tiền khởi tạo ở .init_array thấy hàm sub_4005A0 có sử dụng hàm ptrace (sub__44EC50) để antidebug nên tiến hành debug hàm này để bypass qua ptrace có rất nhiều cách, ở đây mình đơn giản là set cờ ZF = 0
 Sau khi bypass qua ta sẽ thấy binary đọc file /tmp/key.bin và check trước khi in flag vì mình muốn lấy flag nên bypass qua thay vì decrypt để biết require của key.bin
-![/tmp/key.bin](https://doc-04-3g-docs.googleusercontent.com/docs/securesc/8isu8171b93fvpesksjlj662ifiphjhj/8gfbch1p9m2n5s57t9d3en7ujd02r2ov/1559563200000/01308353195273012633/01308353195273012633/1O_xZLmyyinmrLQCFO76m_EzmrhEBfB4e)
+![/tmp/key.bin](https://i.imgur.com/WNjPu38.png)
 ```
 =========================================================
 [11] Accepting connection from 192.168.85.1...
