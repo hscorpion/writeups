@@ -39,12 +39,10 @@ Stuck đoạn này khá lâu thì có 1 hint của anh m3kk_kn1ght: `m3kk_kn1ght
 Sau đó mình tìm các initialization functions trong .init_array, thấy hàm sub_4005A0 có sử dụng hàm ptrace (sub__44EC50) để anti-debug nên tiến hành debug hàm này. (Để bypass qua ptrace có rất nhiều cách, ở đây mình đơn giản là set cờ ZF = 0)
 
 Sau khi bypass qua ta sẽ thấy binary đọc file /tmp/key.bin và check dữ liệu từ key.bin trước khi in flag. Vì mình muốn lấy flag nên bypass qua thay vì decrypt để biết require của key.bin
-<p align = "center">
-<img src="https://i.imgur.com/WNjPu38.png">
-<p>access file /tmp/key.bin</p><br>
-<img src="https://i.imgur.com/V5Sl4qV.png">
-<p>check /tmp/key.bin data</p>
-</p>
+![/tmp/key.bin](https://i.imgur.com/WNjPu38.png)
+access file /tmp/key.bin
+![check-key-bin-data](https://i.imgur.com/V5Sl4qV.png)
+check /tmp/key.bin data
 ```
 =========================================================
 [11] Accepting connection from 192.168.85.1...
