@@ -33,6 +33,7 @@ Cuối cùng, hàm `imageprot::decrypt::h56022ac7eed95389()` xử lí 1 mã base
 ![end](https://i.imgur.com/tGpzYP5.png)
 
 Vì đoạn mã base64 khá lớn và đề cũng yêu cầu `get the photo back out` nên mình đoán đây là 1 file. Nên tiến hành export nó ra và giãi mã nó.
+
 Đây là đoạn script giải mã: [restore-image.py](/fbctf2019/imageprot/restore-image.py)
 
 ![image-back](https://raw.githubusercontent.com/hscorpion/writeups/master/fbctf2019/imageprot/image-back.png)
