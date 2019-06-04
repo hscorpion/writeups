@@ -92,7 +92,7 @@ else {
   printt(&v8, argv);                          // print ':)'
 }
 ```
-Hàm main này đơn giản chỉ là check argument với `my_sUp3r_s3cret_p@$$w0rd1` và in ra 1 flag giả là `Nope{Lolz_this_isnt_the_flag...Try again...}`. Stuck đoạn này khá lâu thì có 1 hint của anh m3kk_kn1ght: `Binary check debugger by using ptrace. Ptrace call in sub_4005A0(a function in init_array of elf)`
+Hàm main này đơn giản chỉ là check argument với `my_sUp3r_s3cret_p@$$w0rd1` và in ra 1 flag giả là `Nope{Lolz_this_isnt_the_flag...Try again...}`. Stuck đoạn này khá lâu thì có 1 hint của anh m3kk_kn1ght: `Binary check debugger by using ptrace. Ptrace call in sub_4005A0(a function in init_array of elf)`. `Chạy bình thường với chạy debug nó khác nhau -> Ko bình thường. Chắc là có đoạn check debug ở đâu đó mà main không có đoạn check debug nên nó nằm ở chỗ khác.`
 
 Sau đó mình tìm các initialization functions trong `.init_array`, thấy hàm `sub_4005A0` có sử dụng hàm `ptrace` (sub__44EC50) để anti-debug nên tiến hành debug hàm này. (Để bypass qua `ptrace` có rất nhiều cách, ở đây mình đơn giản là set cờ ZF = 0)
 
