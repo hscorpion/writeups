@@ -30,7 +30,7 @@ decode_i = *(_BYTE *)(arg3_base64_ + i) ^ *(_BYTE *)(arg2_ + i % len_arg2);
 
 Ngay sau đó, chương trình tiếp tục sử dụng hàm `imageprot::decrypt::h56022ac7eed95389` decrypt ra 1 url là `http://challenges.fbctf.com/vault_is_intern` sau đó gọi hàm `imageprot::get_uri::h3e649992b59ca680` để get url này. Vì trang này đã down nên chương trình sẽ ngắt tại đây (lí do chương trình không thể chạy)
 
-On the first loop, the program uses `imageprot::decrypt::h56022ac7eed95389` function and decrypt. It returns 4 strings: gdb, vmtoolsd, vagrant and VBoxClient (I'm not sure about this but when I continue debugging I found a check 4 strings part, it seems like a requirement of running the program).
+On the first loop, the program uses `imageprot::decrypt::h56022ac7eed95389` function and decrypt. It returns 4 strings: `gdb`, `vmtoolsd`, `vagrant` and `VBoxClient` (I'm not sure about this but when I continue debugging I found a check 4 strings part, it seems like a requirement of running the program).
 
 Shortly, the program continuing uses `imageprot::decrypt::h56022ac7eed95389()` function. It returns an url. Then the program call `imageprot::get_uri::h3e649992b59ca680` function to get this url. Because the site `http://challenges.fbctf.com/vault_is_intern` is down so the program will break at this point.
 
