@@ -2,21 +2,21 @@
 
 ## cliche_crackme
 
-Bài này input là flag đưa xử lý qua 4 function.
+Bài này input là flag được xử lý qua 4 function.
 
-Tạo mảng buf từ input:
+function1: Tạo mảng buf từ input:
 
 ![create_buf](/inctf2019/cliche_crackme/create_buf.png)
 
-Check tổng các kí tự của input:
+function2: Check tổng các kí tự của input:
 
 ![check_inp](/inctf2019/cliche_crackme/check_inp.png)
 
-Check tổng các kí tự của buf:
+function3: Check tổng các kí tự của buf:
 
 ![check_sum](/inctf2019/cliche_crackme/check_sum.png)
 
-Check buf:
+function4: Check buf:
 
 ![check_buf](/inctf2019/cliche_crackme/check_buf.png)
 
