@@ -2,7 +2,7 @@
 
 ## cliche_crackme
 
-Bài này input là flag được kiểm tra qua 3 function
+Bài này input là flag đưa xử lý qua 4 function.
 
 Tạo mảng buf từ input:
 
