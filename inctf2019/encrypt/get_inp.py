@@ -52,7 +52,7 @@ def get_inp(key):
         print(inp[i])
     #after guessing i got
     input = 'CYb3r_$3CuriTy_is_@_$#@r3d_R3$p0^$ibiliTy'
-    # i got it because i did this challenge before organizers limit chr set
+    # i got it because i did this challenge before organizers show the input character set.
     return input
 
 firstfilename(arr_check0)
