@@ -47,8 +47,8 @@ Tại hàm tạo bảng (`0x413AA0`), tương ứng với chỗ người đánh 
 
 Sau đó xử lý input tại hàm `0x41A0B0`. Hàm này thực hiện các thuật toán mã hoá cơ bản với input, sau đó xor input đã mã hoá với 1 mảng có sẵn để ra flag.
 
-c```
-str[7] = (char *)'6&=d';
+```c
+str = '!@#sbjhdn5z6sf5gqc7kcd5mck7ld=&6';
 j = 0;
 for ( i = 0; i < 16; ++i )
 {
