@@ -30,7 +30,7 @@ Reverse file `drop.exe` đơn giản ta thấy, nó check tên file qua hàm `Ch
 
 Script to solve drop.exe: [get_inp.py](/inctf2019/encrypt/get_inp.py)
 
-Sau khi pass qua `drop.exe` thì nó drop ra 1 file [encrypterY8.exe](/inctf2019/encrypt/encrypterY8.exe). Reverse sơ qua thì file này đơn giản là Encrypt AES 128 (Microsoft Enhanced RSA and AES Cryptographic Provider) sử dụng với key là tên file mà đề cho là file đã được encrypt 2 lần nên mình code lại 1 Decrypt AES 128 và tiến hành decrypt file ảnh 2 lần và ra flag.
+Sau khi pass qua `drop.exe` thì nó drop ra 1 file [encrypterY8.exe](/inctf2019/encrypt/encrypterY8.exe). Reverse sơ qua thì file này đơn giản là Encrypt AES 128 (Microsoft Enhanced RSA and AES Cryptographic Provider) sử dụng với key là tên file, mà ở Description có nói là file ảnh đã được encrypt 2 lần nên mình code lại 1 Decrypt AES 128 và tiến hành decrypt file ảnh 2 lần và ra flag.
 
 Source Decrypt AES 128: [decrypt.cpp](/inctf2019/encrypt/decrypt.cpp)
 
