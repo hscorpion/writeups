@@ -1,4 +1,4 @@
-# InCTF 2019 (Vietnamese) [English](#english)
+# InCTF 2019 (Vietnamese) ([English](#english))
 
 ## cliche_crackme
 
@@ -177,14 +177,12 @@ Here is a script to solve `drop.exe` file:
 
 Script to solve drop.exe: [get_inp.py](/inctf2019/encrypt/get_inp.py)
 
-After passing drop.exe file, I have a file name encrypterY8.exe. Reversing it a little bit then I found that this file is basically Encrypt AES 128
+After passing `drop.exe` file, I have a file name [encrypterY8.exe](/inctf2019/encrypt/encrypterY8.exe). Reversing it a little bit then I found that this file is basically Encrypt AES 128
 (Microsoft Enhanced RSA and AES Cryptographic Provider), using the key also a file name. Besides, the description tell us: image file is encrypted 2 times. So I decide to write some code to decrypt AES 128.  
 This is my source code to decrypt AES 128:
 
 Source Decrypt AES 128: [decrypt.cpp](/inctf2019/encrypt/decrypt.cpp)
 
-Decrypt image file 2 times using the program above and we have flag: 
-
-Flag:
+Decrypt image file 2 times using the program above and we have Flag:
 
 ![flag](/inctf2019/encrypt/flag.png)
