@@ -34,4 +34,4 @@ Source Decrypt AES 128: [decrypt.cpp](/inctf2019/encrypt/decrypt.cpp)
 
 Flag:
 
-![flag](/inctf2019/cliche_crackme/flag.png)
+![flag](/inctf2019/encrypt/flag.png)
