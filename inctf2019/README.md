@@ -1,8 +1,8 @@
-# InCTF 2019
+# InCTF 2019 (Vietnamese) [English](#english)
 
 ## cliche_crackme
 
-Bài này input là flag được xử lý qua 4 function.
+Bài này input là flag được xử lý qua 4 function:
 
 function1: Tạo mảng buf từ input:
 
@@ -139,4 +139,52 @@ Script to solve: [get_inp.py](/inctf2019/tictoctoe/get_inp.py)
 
 [frInpToFlag.py](/inctf2019/tictoctoe/frInpToFlag.py)
 
-Flag `inctf{w0W_Y0u_cr4ck3d_my_m3th0d}`
+Flag: `inctf{w0W_Y0u_cr4ck3d_my_m3th0d}`
+
+# English
+
+## cliche-crackme
+
+The input of this challenge (also a flag) is processed through 4 functions:
+
+Function 1: Generating an buf[] array from input
+
+![create_buf](/inctf2019/cliche_crackme/create_buf.png)
+
+Function 2: Checking sum of all input's charaters
+
+![check_inp](/inctf2019/cliche_crackme/check_inp.png)
+
+Function 3: Checking sum of all buf[]'s charaters
+
+![check_sum](/inctf2019/cliche_crackme/check_sum.png)
+
+Function 4: Checking buf[]
+
+![check_buf](/inctf2019/cliche_crackme/check_buf.png)
+
+Script to solve: [solver.py](/inctf2019/cliche_crackme/solver.py)
+
+Flag: `inctf{Th4ts_he11_l0t_0f_w0rk_w4s_it?}`
+
+## Encrypt_
+
+At first, I reverse the `drop.exe` file and easy to understand the work-flow of this small program:
+- Firstly, it checks the file name by Check1 function
+- Next, the input is encrypted by `Tranform` function -> `input1`
+- Finally, `input1` is checked with filename and a given array of `Check2` function
+Here is a script to solve `drop.exe` file:
+
+Script to solve drop.exe: [get_inp.py](/inctf2019/encrypt/get_inp.py)
+
+After passing drop.exe file, I have a file name encrypterY8.exe. Reversing it a little bit then I found that this file is basically Encrypt AES 128
+(Microsoft Enhanced RSA and AES Cryptographic Provider), using the key also a file name. Besides, the description tell us: image file is encrypted 2 times. So I decide to write some code to decrypt AES 128.  
+This is my source code to decrypt AES 128:
+
+Source Decrypt AES 128: [decrypt.cpp](/inctf2019/encrypt/decrypt.cpp)
+
+Decrypt image file 2 times using the program above and we have flag: 
+
+Flag:
+
+![flag](/inctf2019/encrypt/flag.png)
