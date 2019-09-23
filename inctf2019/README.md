@@ -132,7 +132,7 @@ for ( j = 0; j < 4; ++j )
 if ( count != 28 )
   exit();
 for ( j = 0; j < 32; ++j )
-  Str[j] = LOBYTE(inp_mul[j]) ^ (j + LOBYTE(arr7[j]));
+  flag[j] = LOBYTE(inp_mul[j]) ^ (j + LOBYTE(arr7[j]));
 ```
 
 Script to solve: [get_inp.py](/inctf2019/tictoctoe/get_inp.py)
