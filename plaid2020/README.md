@@ -58,6 +58,6 @@ After using google a bit, we know .dcr file is Lingo script. [(1)](https://rever
 
 I got Lingo Script. [lingo-script](/plaid2020/you-wa-SHOCKWAVE/lingo-script.txt)
 
-Solution: [solve.py](plaid2020/you-wa-SHOCKWAVE/solve.py)
+Solution: [solve.py](/plaid2020/you-wa-SHOCKWAVE/solve.py)
 
 Flag: `PCTF{Gr4ph1CS_D3SiGn_Is_tRUlY_My_Pas5ioN!}`
