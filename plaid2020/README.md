@@ -54,7 +54,7 @@ Flag: `pctf(ok_nothing_too_fancy_there!}`
 
 ![screenshot.png](/plaid2020/you-wa-SHOCKWAVE/screenshot.png)
 
-After using google a bit, we know .dcr file is Lingo script. [1](https://reverseengineering.stackexchange.com/questions/14089/reverse-engineering-lingo-scripts-dcr-cct-files) [2](https://medium.com/@nosamu/a-tour-of-the-adobe-director-file-format-e375d1e063c0)
+After using google a bit, we know .dcr file is Lingo script. [(1)](https://reverseengineering.stackexchange.com/questions/14089/reverse-engineering-lingo-scripts-dcr-cct-files) [(2)](https://medium.com/@nosamu/a-tour-of-the-adobe-director-file-format-e375d1e063c0)
 
 I got Lingo Script. [lingo-script](/plaid2020/you-wa-SHOCKWAVE/lingo-script.txt)
 
