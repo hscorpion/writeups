@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+from z3 import *
+
+s = Solver()
+n = 33
+X = [BitVec('x_%s' %i, 8) for i in range(n)]
+aa = X
+flag = ''
+xor_num = 0x50
+arr_check = [0x48, 0x5F, 0x36, 0x35, 0x35, 0x25, 0x14, 0x2C, 0x1D, 0x01, 0x03, 0x2D, 0x0C, 0x6F, 0x35, 0x61, 0x7E, 0x34, 0x0A, 0x44, 0x24, 0x2C, 0x4A, 0x46, 0x19, 0x59, 0x5B, 0x0E, 0x78, 0x74, 0x29, 0x13, 0x2C, 0x00]
+
+s.add(X[0] == 0x70)
+s.add(X[1] == 0x63)
+s.add(X[2] == 0x74)
+s.add(X[3] == 0x66)
+s.add(X[4] == 0x7b)
+s.add(X[32] == 125)
+
+for key in range(1337):
+	for i in range(n):
+		aa[i] = aa[i] ^ xor_num
+		xor_num = aa[i] ^ xor_num
+
+for i in range(n):
+	s.add(aa[i] == arr_check[i])
+
+if s.check() == sat:
+	print("sat")
+	m = s.model()
+	print(m)
+#	for i in range(n):
+#		flag += chr(m[X[i]].as_long())
+#	print(flag)
+else:
+	print("unsat")
