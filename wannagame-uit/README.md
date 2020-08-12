@@ -44,7 +44,7 @@ __int64 __fastcall checkLicense(__int64 key, __int64 key_, __int64 sth_equal_0)
 ```
 
 After analyze:
-+ We'll know `hexdecode()` function converts each 2 char from input to hexcode and make them to array. Example: `input='DEADBEEF', output=[0xDE, 0xAD, 0xBE, 0xEF]`.
++ We'll know `hexdecode()` function converts each 2 character from input to hexadecimal and put them into an array. Example: `input='DEADBEEF', output=[0xDE, 0xAD, 0xBE, 0xEF]`.
 
 + Value of that array with pass to `checksum()` function twice times.
 
@@ -64,7 +64,9 @@ License: `3232300b3b66313f3951387e366919396367407d551e5e1b0e`
 
 ## It is simple, but not easy (200 pts)
 
-Stack overflow at function get input, so we just need to use gadget to take down this challenge.
+![file](/wannagame-uit/pwn2-itiss1mple/file.png)
+
+Stack overflow at function get input, so we just need to use rop gadget to take down this challenge.
 
 Payload: [payload.py](/wannagame-uit/pwn2-itiss1mple/payload.py)
 
