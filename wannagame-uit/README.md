@@ -6,7 +6,7 @@
 
 Purpose: Find license key, so we need to analyze `checkLicense()` function.
 
-Source checkLicense()
+Source `checkLicense()`:
 
 ```c
 __int64 __fastcall checkLicense(__int64 key, __int64 key_, __int64 sth_equal_0)
@@ -44,7 +44,7 @@ __int64 __fastcall checkLicense(__int64 key, __int64 key_, __int64 sth_equal_0)
 ```
 
 After analyze:
-+ We'll know `hexdecode()` function converts each 2 char from input to hexcode and make them to array. Ex: `input='DEADBEEF', output=[0xDE, 0xAD, 0xBE, 0xEF]`.
++ We'll know `hexdecode()` function converts each 2 char from input to hexcode and make them to array. Example: `input='DEADBEEF', output=[0xDE, 0xAD, 0xBE, 0xEF]`.
 
 + Value of that array with pass to `checksum()` function twice times.
 
@@ -52,20 +52,20 @@ After analyze:
 
 + `check_part()` function get each value and check with specific condition.
 
-Solve `check_part()`. [checkpart.py](/wannagame/re3-doIneed/checkpart.py)
+Solve `check_part()`. [checkpart.py](/wannagame-uit/re3-doIneed/checkpart.py)
 
 Solve `mapping()`: I do it manually
 
-Solve `checksum()`. [checksum.py](/wannagame/re3-doIneed/checksum.py)
+Solve `checksum()`. [checksum.py](/wannagame-uit/re3-doIneed/checksum.py)
 
 License: `3232300b3b66313f3951387e366919396367407d551e5e1b0e`
 
-![flag.png](/wannagame/re3-doIneed/flag.png)
+![flag.png](/wannagame-uit/re3-doIneed/flag.png)
 
 ## It is simple, but not easy (200 pts)
 
 Stack overflow at function get input, so we just need to use gadget to take down this challenge.
 
-Payload: [payload.py](/wannagame/pwn2-itiss1mple/payload.py)
+Payload: [payload.py](/wannagame-uit/pwn2-itiss1mple/payload.py)
 
-![flag.png](/wannagame/pwn2-itiss1mple/flag.png)
+![flag.png](/wannagame-uit/pwn2-itiss1mple/flag.png)
