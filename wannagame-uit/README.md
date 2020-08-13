@@ -64,9 +64,15 @@ License: `3232300b3b66313f3951387e366919396367407d551e5e1b0e`
 
 ## It is simple, but not easy (200 pts)
 
+File info:
+
 ![file](/wannagame-uit/pwn2-itiss1mple/file.png)
 
-Stack overflow at function get input, so we just need to use rop gadget to take down this challenge.
+![checksec](/wannagame-uit/pwn2-itiss1mple/checksec.png)
+
+Bug & Solution:
+
++ Stack overflow at function get input (didn't limit input length), because only NX enabled so we just need to use rop gadget to take down this challenge.
 
 Payload: [payload.py](/wannagame-uit/pwn2-itiss1mple/payload.py)
 
