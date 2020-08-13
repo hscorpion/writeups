@@ -52,11 +52,11 @@ After analyze:
 
 + `check_part()` function get each value and check with specific condition.
 
-Solve `check_part()`. [checkpart.py](/wannagame-uit/re3-doIneed/checkpart.py)
+Step 0: solve `check_part()` - [checkpart.py](/wannagame-uit/re3-doIneed/checkpart.py)
 
-Solve `mapping()`: I do it manually
+Step 1: Solve `mapping()` - I do it manually
 
-Solve `checksum()`. [checksum.py](/wannagame-uit/re3-doIneed/checksum.py)
+Step 2: Solve `checksum()` - [checksum.py](/wannagame-uit/re3-doIneed/checksum.py)
 
 License: `3232300b3b66313f3951387e366919396367407d551e5e1b0e`
 
