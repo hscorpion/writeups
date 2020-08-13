@@ -35,12 +35,12 @@ for i in range(5):
 
 if s.check() == sat:
     print('sat')
-    print(s.model())
+    license = ''
+    for i in range(n):
+        if len(hex(s.model()[X[i]].as_long())) == 4:
+            license += hex(s.model()[X[i]].as_long())[2:]
+        else:
+            license += '0' + hex(s.model()[X[i]].as_long())[2:]
+    print(license)
 else:
     print('unsat')
-
-# 3232300b3b
-# 66313f3951
-# 387e366919
-# 396367407d
-# 551e5e1b0e
